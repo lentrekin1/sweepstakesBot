@@ -1,6 +1,8 @@
 import os
+import sys
 import platform
 import random
+from datetime import datetime
 import time
 import traceback
 import logging
@@ -11,13 +13,29 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-# setx BETTER_EXCEPTIONS 1
+if not os.path.isdir('logs'):
+    os.mkdir('logs')
+
+log_file = 'logs/{:%Y_%m_%d_%H}.log'.format(datetime.now())
+log_format = u'%(asctime)s | %(levelname)-8s | %(message)s'
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.INFO)
+handler = logging.FileHandler(log_file, encoding='utf-8')
+formatter = logging.Formatter(log_format)
+handler.setFormatter(formatter)
+root_logger.addHandler(handler)
+printer = logging.StreamHandler(sys.stdout)
+printer.setLevel(logging.DEBUG)
+printer.setFormatter(formatter)
+root_logger.addHandler(printer)
+
+logger = logging.getLogger(__name__)
 
 email_opts = ['lj478654', 'xxbotmail69xx', 'robertbarr4891', 'dripgang010203']
 giveaway = "https://www.itsourfabfashlife.com/2021/05/ice-cream-tour-2021new-york-city.html"
 
 chrome_options = webdriver.ChromeOptions()
-#chrome_options.add_argument('--headless')
+chrome_options.add_argument('--headless')
 
 if platform.system() == 'Windows':
     chromedriver = os.getcwd() + '/windows-chromedriver.exe'
@@ -30,7 +48,7 @@ wait = 0.5
 num_done = 0
 num_failed = 0
 
-print('Starting program...')
+logger.info('Started program')
 while True:
     start = time.time()
 
@@ -79,9 +97,9 @@ while True:
 
         num_done += 1
         end = time.time()
-        print(f'Entered with name {name} and email {email_address}, it took {end - start} seconds ({num_done} successful entry this session, {num_failed} failures in total, {num_failed / (num_done + num_failed)}% fail rate)')
+        logger.info(f'Entered with name {name} and email {email_address}, it took {end - start} seconds ({num_done} successful entry this session, {num_failed} failures in total, {num_failed / (num_done + num_failed)}% fail rate)')
     except:
         driver.quit()
         traceback.print_exc()
         num_failed += 1
-        print(f'*** Entry failed ({num_done} successful entry this session, {num_failed} failures in total, {num_failed / (num_done + num_failed)}% fail rate) ***')
+        logger.exception(f'*** Entry failed ({num_done} successful entry this session, {num_failed} failures in total, {num_failed / (num_done + num_failed)}% fail rate) ***')
