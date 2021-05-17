@@ -1,3 +1,4 @@
+import os
 import random
 import time
 import traceback
@@ -15,10 +16,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 email_opts = ['lj478654', 'xxbotmail69xx', 'robertbarr4891', 'dripgang010203']
 giveaway = "https://www.itsourfabfashlife.com/2021/05/ice-cream-tour-2021new-york-city.html"
 
-fake = Faker()
+on_heroku = True if os.environ['ON_HEROKU'] == 'True' else False
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
-ignored = (StaleElementReferenceException, NoSuchElementException,)
+if on_heroku:
+    chrome_options.binary_location = '/app/.apt/usr/bin/google-chrome'
+fake = Faker()
 timeout = 5
 num_done = 0
 num_failed = 0
