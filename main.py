@@ -60,6 +60,10 @@ while True:
 
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[1]/input"))).send_keys(name)  # name
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[2]/input"))).send_keys(email_address + '@gmail.com' + Keys.ENTER)  # email
+
+        WebDriverWait(driver, timeout).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[2]/div[4]/div[3]/ul/li[1]/div[2]/b[9]")))
+        time.sleep(wait)
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[2]/div[4]/div[3]/ul/li[1]/div[2]/b[9]"))).click()  # dana fb btn
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[3]/form/div[1]/div[2]/fieldset/textarea"))).send_keys(email_address)  # dana fb field
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[3]/form/div[2]/a[2]"))).click()  # dana fb enter
