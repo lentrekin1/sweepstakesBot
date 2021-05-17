@@ -3,10 +3,9 @@ import platform
 import random
 import time
 import traceback
-
+import logging
 from faker import Faker
 from selenium import webdriver
-from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -21,9 +20,9 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
 
 if platform.system() == 'Windows':
-    chromedriver = 'windows-chromedriver.exe'
+    chromedriver = os.getcwd() + '\windows-chromedriver.exe'
 else:
-    chromedriver = 'linux-chromedriver'
+    chromedriver = os.getcwd() + '\linux-chromedriver'
 
 fake = Faker()
 timeout = 5
