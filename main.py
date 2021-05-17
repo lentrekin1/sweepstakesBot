@@ -17,7 +17,7 @@ email_opts = ['lj478654', 'xxbotmail69xx', 'robertbarr4891', 'dripgang010203']
 giveaway = "https://www.itsourfabfashlife.com/2021/05/ice-cream-tour-2021new-york-city.html"
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
+#chrome_options.add_argument('--headless')
 
 if platform.system() == 'Windows':
     chromedriver = os.getcwd() + '/windows-chromedriver.exe'
