@@ -18,11 +18,16 @@ giveaway = "https://www.itsourfabfashlife.com/2021/05/ice-cream-tour-2021new-yor
 
 on_heroku = True if os.environ['ON_HEROKU'] == 'True' else False
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
+if not on_heroku:
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--remote-debugging-port=9222')
+
 if on_heroku:
     chrome_options.binary_location = '/app/.apt/usr/bin/google-chrome'
 fake = Faker()
-timeout = 5
+timeout = 15 if on_heroku else 5
 wait = 5 if on_heroku else 0.5
 num_done = 0
 num_failed = 0
