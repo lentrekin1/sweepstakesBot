@@ -57,7 +57,7 @@ while True:
         WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div[2]/div[3]/div/ul/li/div[2]'))) # prize img
         time.sleep(wait)
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.ID, "emlogin-alt"))).click()  # use email button
-
+        time.sleep(wait)
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[1]/input"))).send_keys(name)  # name
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[2]/input"))).send_keys(email_address + '@gmail.com' + Keys.ENTER)  # email
 
@@ -70,6 +70,7 @@ while True:
         time.sleep(wait)
 
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[2]/div[4]/div[3]/ul/li[2]/div[2]/b[9]"))).click()  # candace fb button
+        time.sleep(wait)
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[3]/form/div[1]/div[2]/fieldset/textarea"))).send_keys(email_address)  # candace fb field
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[3]/form/div[2]/a[2]"))).click()  # candace fb enter
         time.sleep(wait)
