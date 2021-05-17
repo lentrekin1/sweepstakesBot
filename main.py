@@ -51,7 +51,9 @@ while True:
         #driver.execute_script("arguments[0].scrollIntoView();", driver.find_element_by_id('rcwidget_xrz5gb4a'))
 
         driver.switch_to.frame('rcwidget_xrz5gb4a')  # switch to giveaway iframe
+        WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.CLASS_NAME, 'fb-login-button')))
         driver.execute_script("arguments[0].scrollIntoView();", driver.find_element_by_class_name('fb-login-button'))
+
         WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div[2]/div[3]/div/ul/li/div[2]'))) # prize img
         time.sleep(wait)
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.ID, "emlogin-alt"))).click()  # use email button
