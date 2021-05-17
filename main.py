@@ -23,6 +23,7 @@ timeout = 5
 num_done = 0
 num_failed = 0
 
+print('Starting program...')
 while True:
     start = time.time()
 
