@@ -1,4 +1,5 @@
 import os
+import platform
 import random
 import time
 import traceback
@@ -19,6 +20,11 @@ giveaway = "https://www.itsourfabfashlife.com/2021/05/ice-cream-tour-2021new-yor
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
 
+if platform.system() == 'Windows':
+    chromedriver = 'windows-chromedriver.exe'
+else:
+    chromedriver = 'linux-chromedriver'
+
 fake = Faker()
 timeout = 5
 wait = 0.5
@@ -38,7 +44,7 @@ while True:
     if email_address[-1] == '.':
         email_address = email_address[:-1]
 
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options, executable_path=chromedriver)
 
     try:
         driver.get(giveaway)
