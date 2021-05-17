@@ -20,9 +20,9 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
 
 if platform.system() == 'Windows':
-    chromedriver = os.getcwd() + '\windows-chromedriver.exe'
+    chromedriver = os.getcwd() + '/windows-chromedriver.exe'
 else:
-    chromedriver = os.getcwd() + '\linux-chromedriver'
+    chromedriver = os.getcwd() + '/linux-chromedriver'
 
 fake = Faker()
 timeout = 5
