@@ -97,9 +97,9 @@ while True:
 
         num_done += 1
         end = time.time()
-        logger.info(f'Entered with name {name} and email {email_address}, it took {end - start} seconds ({num_done} successful entry this session, {num_failed} failures in total, {num_failed / (num_done + num_failed)}% fail rate)')
+        logger.info(f'Entered with name {name} and email {email_address}, it took {end - start} seconds ({num_done} successful entry this session, {num_failed} failures in total, {(num_failed / (num_done + num_failed)) * 100}% fail rate)')
     except:
         driver.quit()
         traceback.print_exc()
         num_failed += 1
-        logger.exception(f'*** Entry failed ({num_done} successful entry this session, {num_failed} failures in total, {num_failed / (num_done + num_failed)}% fail rate) ***')
+        logger.exception(f'*** Entry failed ({num_done} successful entry this session, {num_failed} failures in total, {(num_failed / (num_done + num_failed)) * 100}% fail rate) ***')
