@@ -1,11 +1,11 @@
+import logging
 import os
-import sys
 import platform
 import random
-from datetime import datetime
+import sys
 import time
-import traceback
-import logging
+from datetime import datetime
+
 from faker import Faker
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -32,7 +32,7 @@ root_logger.addHandler(printer)
 logger = logging.getLogger(__name__)
 
 email_opts = ['lj478654', 'xxbotmail69xx', 'robertbarr4891', 'dripgang010203']
-giveaway = "https://www.itsourfabfashlife.com/2021/05/ice-cream-tour-2021new-york-city.html"
+giveaway = "http://m.gvwy.io/?raflid=ccd81afb74&scale=&template=&previous_url=&referrer="
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
@@ -65,41 +65,58 @@ while True:
 
     try:
         driver.get(giveaway)
-        WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.ID, 'rcwidget_xrz5gb4a')))
-        #driver.execute_script("arguments[0].scrollIntoView();", driver.find_element_by_id('rcwidget_xrz5gb4a'))
 
-        driver.switch_to.frame('rcwidget_xrz5gb4a')  # switch to giveaway iframe
+        WebDriverWait(driver, timeout).until(EC.frame_to_be_available_and_switch_to_it((By.ID, 'rcwidget')))
         WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.CLASS_NAME, 'fb-login-button')))
-        driver.execute_script("arguments[0].scrollIntoView();", driver.find_element_by_class_name('fb-login-button'))
-
-        WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div[2]/div[3]/div/ul/li/div[2]'))) # prize img
+        WebDriverWait(driver, timeout).until(
+            EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div[2]/div[3]/div/ul/li/div[2]')))  # prize img
         time.sleep(wait)
-        WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.ID, "emlogin-alt"))).click()  # use email button
-        time.sleep(wait)
-        WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[1]/input"))).send_keys(name)  # name
-        WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[2]/input"))).send_keys(email_address + '@gmail.com' + Keys.ENTER)  # email
 
         WebDriverWait(driver, timeout).until(
-            EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[2]/div[4]/div[3]/ul/li[1]/div[2]/b[9]")))
+            EC.element_to_be_clickable((By.ID, "emlogin-alt"))).click()  # use email button
         time.sleep(wait)
-        WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[2]/div[4]/div[3]/ul/li[1]/div[2]/b[9]"))).click()  # dana fb btn
-        WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[3]/form/div[1]/div[2]/fieldset/textarea"))).send_keys(email_address)  # dana fb field
-        WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[3]/form/div[2]/a[2]"))).click()  # dana fb enter
+        WebDriverWait(driver, timeout).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[1]/input"))).send_keys(
+            name)  # name
+
+        WebDriverWait(driver, timeout).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[2]/input"))).send_keys(
+            email_address + '@gmail.com' + Keys.ENTER)  # email
         time.sleep(wait)
 
-        WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[2]/div[4]/div[3]/ul/li[2]/div[2]/b[9]"))).click()  # candace fb button
-        time.sleep(wait)
-        WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[3]/form/div[1]/div[2]/fieldset/textarea"))).send_keys(email_address)  # candace fb field
-        WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[3]/form/div[2]/a[2]"))).click()  # candace fb enter
-        time.sleep(wait)
+        if len(driver.find_elements_by_css_selector('.entry-option-checkmark.visible')) == 0:
+            WebDriverWait(driver, timeout).until(
+                EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[2]/div[4]/div[3]/ul/li[1]/div[2]/b[9]")))
+            time.sleep(wait)
+            WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/div[2]/div[4]/div[3]/ul/li[1]/div[2]/b[9]"))).click()  # dana fb btn
+            WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/div[3]/form/div[1]/div[2]/fieldset/textarea"))).send_keys(
+                email_address)  # dana fb field
+            WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/div[3]/form/div[2]/a[2]"))).click()  # dana fb enter
+
+            time.sleep(wait)
+
+            WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/div[2]/div[4]/div[3]/ul/li[2]/div[2]/b[9]"))).click()  # candace fb button
+            time.sleep(wait)
+            WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/div[3]/form/div[1]/div[2]/fieldset/textarea"))).send_keys(
+                email_address)  # candace fb field
+            WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(
+                (By.XPATH, "/html/body/div[2]/div[3]/form/div[2]/a[2]"))).click()  # candace fb enter
+            time.sleep(wait)
 
         driver.quit()
 
         num_done += 1
         end = time.time()
-        logger.info(f'Entered with name {name} and email {email_address}, it took {end - start} seconds ({num_done} successful entry this session, {num_failed} failures in total, {(num_failed / (num_done + num_failed)) * 100}% fail rate)')
+        logger.info(
+            f'Entered with name {name} and email {email_address}, it took {end - start} seconds ({num_done} successful entry this session, {num_failed} failures in total, {(num_failed / (num_done + num_failed)) * 100}% fail rate)')
     except:
-        driver.quit()
-        traceback.print_exc()
         num_failed += 1
-        logger.exception(f'*** Entry failed ({num_done} successful entry this session, {num_failed} failures in total, {(num_failed / (num_done + num_failed)) * 100}% fail rate) ***')
+        logger.exception(
+            f'*** Entry failed ({num_done} successful entry this session, {num_failed} failures in total, {(num_failed / (num_done + num_failed)) * 100}% fail rate) ***')
+
+        driver.quit()
