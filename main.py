@@ -62,6 +62,7 @@ while True:
     if email_address[-1] == '.':
         email_address = email_address[:-1]
     email_address += '+' + ''.join(random.choices(string.ascii_letters, k=7))
+
     driver = webdriver.Chrome(options=chrome_options, executable_path=chromedriver)
 
     try:
