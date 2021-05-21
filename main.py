@@ -2,6 +2,7 @@ import logging
 import os
 import platform
 import random
+import string
 import sys
 import time
 from datetime import datetime
@@ -35,7 +36,7 @@ email_opts = ['lj478654', 'xxbotmail69xx', 'robertbarr4891', 'dripgang010203']
 giveaway = "http://m.gvwy.io/?raflid=ccd81afb74&scale=&template=&previous_url=&referrer="
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
+#chrome_options.add_argument('--headless')
 
 if platform.system() == 'Windows':
     chromedriver = os.getcwd() + '/windows-chromedriver.exe'
@@ -60,7 +61,7 @@ while True:
             email_address += '.'
     if email_address[-1] == '.':
         email_address = email_address[:-1]
-
+    email_address += '+' + ''.join(random.choices(string.ascii_letters, k=7))
     driver = webdriver.Chrome(options=chrome_options, executable_path=chromedriver)
 
     try:
