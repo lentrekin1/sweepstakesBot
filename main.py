@@ -83,7 +83,8 @@ while True:
 
         WebDriverWait(driver, timeout).until(
             EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[2]/input"))).send_keys(
-            email_address + '@gmail.com' + Keys.ENTER)  # email
+            email_address + '@gmail.com')# + Keys.ENTER)  # email
+        time.sleep(20)
         time.sleep(wait)
 
         if len(driver.find_elements_by_css_selector('.entry-option-checkmark.visible')) == 0:
