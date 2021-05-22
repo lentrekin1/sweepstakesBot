@@ -87,7 +87,6 @@ while True:
         WebDriverWait(driver, timeout).until(
             EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[2]/input"))).send_keys(
             Keys.ENTER)
-        time.sleep(20)
         time.sleep(wait)
 
         if len(driver.find_elements_by_css_selector('.entry-option-checkmark.visible')) == 0:
@@ -115,7 +114,7 @@ while True:
                 (By.XPATH, "/html/body/div[2]/div[3]/form/div[2]/a[2]"))).click()  # candace fb enter
             time.sleep(wait)
             #time.sleep(20)
-
+        time.sleep(10)
         driver.quit()
 
         num_done += 1
