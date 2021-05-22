@@ -106,9 +106,11 @@ while True:
             WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(
                 (By.XPATH, "/html/body/div[2]/div[3]/form/div[1]/div[2]/fieldset/textarea"))).send_keys(
                 email_address)  # candace fb field
+            time.sleep(wait)
             WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(
                 (By.XPATH, "/html/body/div[2]/div[3]/form/div[2]/a[2]"))).click()  # candace fb enter
             time.sleep(wait)
+            #time.sleep(20)
 
         driver.quit()
 
