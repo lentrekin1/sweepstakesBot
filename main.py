@@ -36,7 +36,7 @@ email_opts = ['lj478654', 'xxbotmail69xx', 'robertbarr4891', 'dripgang010203']
 giveaway = "http://m.gvwy.io/?raflid=ccd81afb74&scale=&template=&previous_url=&referrer="
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
+#chrome_options.add_argument('--headless')
 
 if platform.system() == 'Windows':
     chromedriver = os.getcwd() + '/windows-chromedriver.exe'
