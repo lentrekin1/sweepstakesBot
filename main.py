@@ -83,7 +83,10 @@ while True:
 
         WebDriverWait(driver, timeout).until(
             EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[2]/input"))).send_keys(
-            email_address + '@gmail.com')# + Keys.ENTER)  # email
+            email_address + '@gmail.com')  # email
+        WebDriverWait(driver, timeout).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div[4]/form/fieldset/div[2]/input"))).send_keys(
+            Keys.ENTER)
         time.sleep(20)
         time.sleep(wait)
 
