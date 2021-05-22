@@ -36,7 +36,7 @@ email_opts = ['lj478654', 'xxbotmail69xx', 'robertbarr4891', 'dripgang010203']
 giveaway = "http://m.gvwy.io/?raflid=ccd81afb74&scale=&template=&previous_url=&referrer="
 
 chrome_options = webdriver.ChromeOptions()
-#chrome_options.add_argument('--headless')
+chrome_options.add_argument('--headless')
 
 if platform.system() == 'Windows':
     chromedriver = os.getcwd() + '/windows-chromedriver.exe'
@@ -114,7 +114,7 @@ while True:
                 (By.XPATH, "/html/body/div[2]/div[3]/form/div[2]/a[2]"))).click()  # candace fb enter
             time.sleep(wait)
             #time.sleep(20)
-        time.sleep(10)
+
         driver.quit()
 
         num_done += 1
